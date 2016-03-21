@@ -17,6 +17,8 @@ readonly VIM_DIR="${__REPO_DIRECTORY__}/vim"
 readonly CONFIG_DIR="${__REPO_DIRECTORY__}/config"
 readonly SCRIPT_DIR="${__REPO_DIRECTORY__}/bin"
 
+let EXISTING_FILES=0
+
 function exitIfRoot {
 #Exits the script if it was run by root.
     if [[ ${EUID} -eq 0 ]]; then
@@ -27,14 +29,27 @@ function exitIfRoot {
 
 function linkRcFiles {
 #Create hard links for all rc files at ~
+    local linkLocation=""
+
     for rcFilename in $(ls ${RC_DIR}); do
-        ln "${RC_DIR}/${rcFilename}" "${__HOME_DIRECTORY__}/.${rcFilename}"
+        linkLocation="${__HOME_DIRECTORY__}/.${rcFilename}"    
+        if [[ -a ${linkLocation} ]]; then
+            mv "${linkLocation}" "${linkLocation}_OLD"
+            let EXISTING_FILES+=1
+        fi
+
+        ln "${RC_DIR}/${rcFilename}" ${linkLocation}
     done
 }
 
 function linkConfigDir {
 #Creates a soft link from this repo's "config" directory to "~/.config"
     local homeConfig="${__HOME_DIRECTORY__}/.config"
+
+    if [[ -d ${homeConfig} ]]; then
+        mv "${homeConfig}" "${homeConfig}_OLD"
+        let EXISTING_FILES+=1
+    fi
 
     ln -s ${CONFIG_DIR} ${homeConfig}
 }
@@ -43,12 +58,22 @@ function linkScriptsDir {
 #Creates a soft link from this repo's "bin" directory to "~/bin"
     local homeBin="${__HOME_DIRECTORY__}/bin"
 
+    if [[ -d ${homeBin} ]]; then
+        mv "${homeBin}" "${homeBin}_OLD"
+        let EXISTING_FILES+=1
+    fi
+
     ln -s ${SCRIPT_DIR} ${homeBin}
 }
 
 function linkVimDir {
 #Creates a soft link from this repo's "vim" directory to "~/.vim"
     local homeVim="${__HOME_DIRECTORY__}/.vim"
+
+    if [[ -d ${homeVim} ]]; then
+        mv "${homeVim}" "${homeVim}_OLD"
+        let EXISTING_FILES+=1
+    fi
 
     ln -s ${VIM_DIR} ${homeVim}
 }
@@ -61,6 +86,13 @@ main() {
     linkConfigDir
     linkScriptsDir
     linkVimDir
+
+    #Install all of the vim plugins
+    vim +PluginInstall +qall
+
+    if [[ "$EXISTING_FILES" -gt "0" ]]; then
+        echo "There were some file conflicts. Those files were appended with '_OLD', and require merging."
+    fi 
 
     source ~/.bashrc
     exit 0
