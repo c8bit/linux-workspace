@@ -1,0 +1,35 @@
+set nocompatible
+filetype off
+
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+"let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'powerline/fonts'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive' "Git branch tracking/Integrated Git commands
+Plugin 'edkolev/promptline.vim'
+
+call vundle#end()
+filetype plugin indent on
+
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+"Non-Vundle stuff
+set number
+syntax on
+set background=dark
+colorscheme solarized
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4 "makes backspace feel like its a real tab

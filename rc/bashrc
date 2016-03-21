@@ -1,0 +1,38 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#powerline script
+source ~/.shell_prompt.sh
+
+PS1='[\u@\h \W]\$ '
+
+#+++++++++++++++++++++++CUSTOM+++++++++++++++++++++++++++++++++++++++++++++++++
+
+function checkPythonVenv {
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+        echo "Virtual Environment not set."
+    else
+        basename ${VIRTUAL_ENV}
+    fi
+}
+
+function setAliases {
+    alias ls='ls --color=auto'
+    alias l='ls -alrt'
+
+    alias fwup='sudo netctl start wlp58s0-foxie_den'
+    alias venv='checkPythonVenv'
+}
+
+main() {
+    setAliases
+
+    #Show machine info
+    screenfetch
+}
+
+main

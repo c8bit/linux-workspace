@@ -1,0 +1,9 @@
+#include ".config/X11/solarized-dark"
+
+URxvt.loginShell: true
+
+URxvt.font: xft:Inconsolata for Powerline:size=14,\
+            xft:Kochi Gothic:antialias=false
+
+URxvt.scrollBar: false
+URxvt.borderLess: true
