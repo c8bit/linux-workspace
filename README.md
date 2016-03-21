@@ -1,4 +1,5 @@
 #linux-workspace
+This is a set of rc and config files for my personal preferred linux workspace. I use this repo to clone my workspace settings to any computer I work on, and I update it as often as I update those files. Feel free to use the structure and scripts, and remove/change the files so you can do the same for your workspace!! ^__^
 
 ##Quick Start
 * Copy the appropriate files.
