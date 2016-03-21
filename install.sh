@@ -78,6 +78,14 @@ function linkVimDir {
     ln -s ${VIM_DIR} ${homeVim}
 }
 
+function installVundle {
+#Installs the Vundle package manager for Vim
+    git clone "https://github.com/VundleVim/Vundle.vim.git" "${VIM_DIR}/bundle/Vundle.vim"
+
+    #Install all of the vim plugins
+    vim +PluginInstall +qall
+}
+
 
 main() {
     exitIfRoot
@@ -87,8 +95,7 @@ main() {
     linkScriptsDir
     linkVimDir
 
-    #Install all of the vim plugins
-    vim +PluginInstall +qall
+    installVundle
 
     if [[ "$EXISTING_FILES" -gt "0" ]]; then
         echo "There were some file conflicts. Those files were appended with '_OLD', and require merging."
