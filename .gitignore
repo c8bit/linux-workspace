@@ -1,6 +1,5 @@
 vim/bundle/*
+!vim/bundle
 config/*
 !config/X11
 !config/X11/*
-!config/awesome
-!config/awesome/*
