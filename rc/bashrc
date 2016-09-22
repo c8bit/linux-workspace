@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #
 # ~/.bashrc
 #
@@ -57,6 +59,15 @@ function setAliases {
 
     alias venv='checkPythonVenv'
     #alias ssh='sshProfileSwitch'
+
+    # If vi exists but 'vim' doesn't, alias 'vim' to 'vi'. This happens on 
+    #   Cygwin, even though vi IS vim on there.
+    if ! [[ command -v vim 2>&1>/dev/null ]]; then
+        if [[ command -v vi 2>&1>/dev/null ]]; then
+            alias vim='vi'
+        fi
+    fi
+
 }
 
 main() {
