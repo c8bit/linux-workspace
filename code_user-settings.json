@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite the default settings
+{
+    // Enable tab completion for inserting snippets
+    "editor.tabCompletion": true,
+
+    // Remove Snippets from suggestion widget since we're using tab completion
+    "editor.snippetSuggestions": "none",
+
+    // Controls after how many characters the editor will wrap to the next line. Setting this to 0 turns on viewport width wrapping (word wrapping). Setting this to -1 forces the editor to never wrap.
+    "editor.wrappingColumn": 120,
+
+    // The path of the shell that the terminal uses on Windows. When using shells shipped with Windows (cmd, PowerShell or Bash on Ubuntu), prefer C:\Windows\sysnative over C:\Windows\System32 to use the 64-bit versions.
+    "terminal.integrated.shell.windows": "C:\\Windows\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe"
+}
