@@ -8,8 +8,8 @@
 readonly BASH_VERSION_NUMBER=$(sed -r 's/^([0-9]+\.[0-9]+\.[0-9]+).*$/\1/' <<< $BASH_VERSION)
 
 #Prompt Profiles
-readonly PROMPT_DEFAULT='[\u@\h \W]{$?}\$ '
-readonly PROMPT_CAUTION='caution->'
+readonly PROMPT_DEFAULT='\e[1;35m[\u@\h \W]\e[m\e[0;33m{$?}\$\e[m '
+readonly PROMPT_CAUTION='\e[0;31caution->\e[m '
 readonly PROMPT_PROD=''
 
 #TODO: Confirm this works properly, remain consistent with standards (once I
@@ -52,7 +52,7 @@ function sshProfileSwitch {
 
 function setAliases {
     alias ls='ls --color=auto'
-    alias l='ls -lh'
+    alias l='ls -lrth'
     alias la='l -a'
 
     alias venv='checkPythonVenv'
