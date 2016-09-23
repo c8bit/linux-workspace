@@ -2,19 +2,21 @@
 
 function lineEndingsDos2Unix {
     local arg=$1
-    local filesToConvert=$(find $arg -not -type d)
-    #local tempFile="./TEMP"
 
-    for file in $filesToConvert
-    do
-        #printf '%s\n' 'H' ',s///' 'wq' | ed -s $file
+    if [[ -f "$arg" ]]; then
+        # Single file
+        local filesToConvert="$arg"
+    elif [[ -d "$arg" ]]; then
+        # Directory, recursive
+        #FIXME: Handle errors on certain types of files
+        local filesToConvert=$(find $arg -not -type d)
+    else
+        echo "usage: "
+    fi
+
+    for file in $filesToConvert; do
         ed -s $file <<< $'H\n,s///\nwq'
-        #tr -d '' >$tempFile
-        #rm $file
-        #mv $tempFile $file
     done
-
-    #rm $tempFile
 }
 
-
+lineEndingsDos2Unix "$@"
