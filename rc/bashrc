@@ -14,6 +14,8 @@ readonly PROMPT_DEFAULT='\e[1;35m[\u@\h \W]\e[m\e[0;33m{$?}\$\e[m '
 readonly PROMPT_CAUTION='\e[0;31caution->\e[m '
 readonly PROMPT_PROD=''
 
+PS1=${PROMPT_DEFAULT}
+
 #TODO: Confirm this works properly, remain consistent with standards (once I
 #   decide what they are).
 readonly POWERLINE_SCRIPT="~/.shell_prompt.sh"
@@ -21,8 +23,7 @@ if [[ -f $POWERLINE_SCRIPT ]]; then
     source ${POWERLINE_SCRIPT}
 fi
 
-PS1=${PROMPT_DEFAULT}
-
+## Shortcut for checking current python virtualenv instance.
 function checkPythonVenv {
     if [[ -z "$VIRTUAL_ENV" ]]; then
         echo "Virtual Environment not set."
@@ -60,6 +61,7 @@ function setAliases {
     alias venv='checkPythonVenv'
     #alias ssh='sshProfileSwitch'
 
+    #FIXME: Figure out if this is arbitrary and needs to be removed. I think it is/does.
     # If vi exists but 'vim' doesn't, alias 'vim' to 'vi'. This happens on 
     #   Cygwin, even though vi IS vim on there.
     if [[ ! $(command -v vim 2>&1>/dev/null) ]]; then
@@ -70,8 +72,16 @@ function setAliases {
 
 }
 
+## Enables and/or executes any miscellaneous settings that don't fall into other
+#    categories.
+function setMisc {
+    # Disable software flow ctrl in terminals (to avoid C-s and C-q annoyances)
+    stty -ixon
+}
+
 main() {
     setAliases
+    setMisc
 
     #Show machine info
     screenfetch
