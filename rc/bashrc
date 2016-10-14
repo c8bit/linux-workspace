@@ -53,6 +53,12 @@ function sshProfileSwitch {
     PS1=${oldProfile}
 }
 
+## Generates the 'tags' file for Vim from personal Vim-style help files.
+function generateVimHelp {
+    #TODO: Make a 'constants' shell script and pull vimdir in from that
+    vim -c "helpt ${HOME}/.vim/doc/"
+}
+
 function setAliases {
     alias ls='ls --color=auto'
     alias l='ls -lrth'
@@ -82,9 +88,12 @@ function setMisc {
 main() {
     setAliases
     setMisc
+    generateVimHelp
 
-    #Show machine info
-    screenfetch
+    #Show machine info if screenfetch is installed
+    if [[ $(command -v screenfetch 2>&1>/dev/null) ]]; then
+        screenfetch
+    fi
 }
 
 main

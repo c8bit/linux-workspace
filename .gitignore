@@ -1,9 +1,12 @@
 vim/bundle/*
 !vim/bundle
 vim/view/*
-config/*
-!config/X11
-!config/X11/*
+vim/doc/adc-*
+
 *~
 *.swp
 *.swo
+
+config/*
+!config/X11
+!config/X11/*
