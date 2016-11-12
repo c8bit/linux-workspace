@@ -1,5 +1,4 @@
-#!/bin/bash
-#TODO: Figure out the proper hashbang to use.
+#!/usr/bin/env bash
 
 #------------------------------------------------------------------------------
 # sdk-env.sh

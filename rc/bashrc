@@ -45,7 +45,7 @@ function checkPythonVenv {
 function sshProfileSwitch {
     ## Facilitates prompt profile switching on ssh to specific hosts.
     #
-    #  \arg remoteHost: The user@host argument to ssh.
+    # \arg remoteHost: The user@host argument to ssh.
 
     local remoteHost=$1
 
@@ -64,8 +64,9 @@ function sshProfileSwitch {
     PS1=${oldProfile}
 }
 
-## Generates the 'tags' file for Vim from personal Vim-style help files.
 function generateVimHelp {
+    ## Generates the 'tags' file for Vim from personal Vim-style help files.
+
     #TODO: Make a 'constants' shell script and pull vimdir in from that
     vim -c "helpt ${HOME}/.vim/doc/"
 }
@@ -89,9 +90,10 @@ function setAliases {
 
 }
 
-## Enables and/or executes any miscellaneous settings that don't fall into other
-#    categories.
 function setMisc {
+    ## Enables and/or executes any miscellaneous settings that don't fall into other
+    #  categories.
+
     # Disable software flow ctrl in terminals (to avoid C-s and C-q annoyances)
     stty -ixon
 }
