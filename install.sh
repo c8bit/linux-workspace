@@ -101,18 +101,49 @@ function installVundle {
 main() {
     exitIfRoot
 
-    linkRcFiles
-    linkConfigDir
-    linkScriptsDir
-    linkVimDir
+    local menuOptions=(
+        'Link rc files'
+        'Link config directory'
+        'Link scripts directory'
+        'Link Vim directory'
+        'Install Vundle'
+        'Quit'
+    )
 
-    installVundle
+    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    echo "|           Config Manager             |"
+    echo "|                                      |"
+    echo "|       Please select an option:       |"
+    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
+    select opt in "${menuOptions[@]}"; do
+        case $opt in
+            'Link rc files')
+                linkRcFiles
+                ;;
+            'Link config directory')
+                linkConfigDir
+                ;;
+            'Link scripts directory')
+                linkScriptsDir
+                ;;
+            'Link Vim directory')
+                linkVimDir
+                ;;
+            'Install Vundle')
+                installVundle
+                ;;
+            'Quit')
+                break
+                ;;
+        esac
+    done
 
     if [[ "$EXISTING_FILES" -gt "0" ]]; then
         echo "There were some file conflicts. Those files were appended with '_OLD', and require merging."
     fi 
 
-    source ~/.bashrc
+    #source ~/.bashrc
     exit 0
 }
 

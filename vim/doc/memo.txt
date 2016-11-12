@@ -1,0 +1,61 @@
+*memo.txt*	Caitlyn's General Memo	2016 Oct 14 
+===============================================================================
+*me-subjects* *me-toc* *me-contents*
+
+Dev Notes/Tips	~
+|me-vim| Vim tips/notes
+|me-svn| subversion tips
+|me-adc| adc notes
+
+
+===============================================================================
+*me-vim*	Vim Tips
+
+						*me-helpfiles*
+Help Files
+	For Vim helpfile tips, see |help-writing|. Also, it looks like
+	syntax such as *Todo and *Error might have special meaning??
+
+        Looks like example help files can be found at $VIMRUNTIME/vim##/doc. 
+        $VIMRUNTIME is probably /usr/share/vim . Or you can (sorta) check
+        the variable 'runtimepath'. 
+
+        Be sure to re-run |helptags| whenever you want to re-index the tags
+        from this file into the help system. run ":helptags $HOME/.vim/doc".
+
+
+===============================================================================
+*me-svn*	Subversion Tips
+
+						*me-rbupdate*
+Update review in ReviewBoard:
+	svn ci -m "<MSG_BODY> ...update review:<REQUEST_NUM>" <FILE_NAMES>
+Example:
+	svn ci -m "Bug 20422: Reverted code. ...update review:10137" file.py
+
+
+						*me-norb*
+Commit without ReviewBoard:
+	svn ci -m "<MSG> #nrb" <FILES>
+Example:
+	svn ci -m "Bug 99999: Committing bundles. #nrb" myBundle.js
+
+
+						*me-revert*
+Revert file to specific revision #:
+	svn merge -r <CURR_REVISION_NUM>:<TARGET_REVISION_NUM> <FILE_NAME>
+Example:
+	svn merge -r 103247:103245 myFile.py
+
+
+						*me-revertall*	
+Revert all modified files:
+	svn revert -R
+
+
+						*me-svnmsg*
+Changing a commit message:
+	svn propset --revprop -r <SVN_REVISION_NUM> svn:log "<NEW_MSG>"
+
+
+vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:
