@@ -1,4 +1,6 @@
 #!/bin/bash
+#TODO: Figure out the proper hashbang to use.
+#TODO: Add a linkBashrcScriptsDir function.
 
 #------------------------------------------------------------------------------
 # install.sh
@@ -9,9 +11,12 @@
 #   and multiple systems can be tracked with this script to make sure that
 #   you're never without your trusty linux workspace :)
 #------------------------------------------------------------------------------
+
 readonly __REPO_DIRECTORY__=$(readlink -m $(dirname $0))
 readonly __HOME_DIRECTORY__=$(echo ~)
 
+#TODO: make sure that removing quotes from these will allow them to work
+#      properly, for consistency with bashrc dir vars.
 readonly RC_DIR="${__REPO_DIRECTORY__}/rc"
 readonly VIM_DIR="${__REPO_DIRECTORY__}/vim"
 readonly CONFIG_DIR="${__REPO_DIRECTORY__}/config"
@@ -20,7 +25,8 @@ readonly SCRIPT_DIR="${__REPO_DIRECTORY__}/bin"
 let EXISTING_FILES=0
 
 function exitIfRoot {
-#Exits the script if it was run by root.
+    ## Exits the script if it was run by root.
+
     if [[ ${EUID} -eq 0 ]]; then
         echo "ERROR: This script is for individual users only. Do not run as root. Exiting."
         exit 1
@@ -28,7 +34,8 @@ function exitIfRoot {
 }
 
 function linkRcFiles {
-#Create hard links for all rc files at ~
+    ## Create hard links for all rc files at ~
+
     local linkLocation=""
 
     for rcFilename in $(ls ${RC_DIR}); do
@@ -43,7 +50,8 @@ function linkRcFiles {
 }
 
 function linkConfigDir {
-#Creates a soft link from this repo's "config" directory to "~/.config"
+    ## Creates a soft link from this repo's "config" directory to "~/.config"
+
     local homeConfig="${__HOME_DIRECTORY__}/.config"
 
     if [[ -d ${homeConfig} ]]; then
@@ -55,7 +63,8 @@ function linkConfigDir {
 }
 
 function linkScriptsDir {
-#Creates a soft link from this repo's "bin" directory to "~/bin"
+    ## Creates a soft link from this repo's "bin" directory to "~/bin"
+
     local homeBin="${__HOME_DIRECTORY__}/bin"
 
     if [[ -d ${homeBin} ]]; then
@@ -67,7 +76,8 @@ function linkScriptsDir {
 }
 
 function linkVimDir {
-#Creates a soft link from this repo's "vim" directory to "~/.vim"
+    ## Creates a soft link from this repo's "vim" directory to "~/.vim"
+
     local homeVim="${__HOME_DIRECTORY__}/.vim"
 
     if [[ -d ${homeVim} ]]; then
@@ -79,7 +89,8 @@ function linkVimDir {
 }
 
 function installVundle {
-#Installs the Vundle package manager for Vim
+    ## Installs the Vundle package manager for Vim
+
     git clone "https://github.com/VundleVim/Vundle.vim.git" "${VIM_DIR}/bundle/Vundle.vim"
 
     #Install all of the vim plugins

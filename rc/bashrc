@@ -1,11 +1,15 @@
-#
+#!/bin/bash
+#TODO: Figure out the proper hashbang to use.
+
+#------------------------------------------------------------------------------
 # ~/.bashrc
-#
+#------------------------------------------------------------------------------
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 readonly BASH_VERSION_NUMBER=$(sed -r 's/^([0-9]+\.[0-9]+\.[0-9]+).*$/\1/' <<< $BASH_VERSION)
+readonly BASHRC_SCRIPTS_DIR=~/.bashrc-scripts
 
 #Prompt Profiles
 readonly PROMPT_DEFAULT='[\u@\h \W]{$?}\$ '
@@ -21,6 +25,14 @@ fi
 
 PS1=${PROMPT_DEFAULT}
 
+function sourceBashrcScripts {
+    ## Sources all the startup scripts in the bashrc scripts directory.
+
+    for file in ${BASHRC_SCRIPTS_DIR}/*; do
+        source $file
+    done
+}
+
 function checkPythonVenv {
     if [[ -z "$VIRTUAL_ENV" ]]; then
         echo "Virtual Environment not set."
@@ -29,10 +41,11 @@ function checkPythonVenv {
     fi
 }
 
-## Facilitates prompt profile switching on ssh to specific hosts.
-#
-#  \arg remoteHost: The user@host argument to ssh.
 function sshProfileSwitch {
+    ## Facilitates prompt profile switching on ssh to specific hosts.
+    #
+    #  \arg remoteHost: The user@host argument to ssh.
+
     local remoteHost=$1
 
     #FIXME: Not working yet... (T^T)
@@ -61,6 +74,7 @@ function setAliases {
 
 main() {
     setAliases
+    sourceBashrcScripts
 
     #Show machine info
     screenfetch
