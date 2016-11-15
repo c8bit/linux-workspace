@@ -2,6 +2,7 @@ vim/bundle/*
 !vim/bundle
 vim/view/*
 vim/doc/adc-*
+vim/doc/tags
 
 *~
 *.swp

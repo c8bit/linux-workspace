@@ -56,7 +56,7 @@ function sshProfileSwitch {
 ## Generates the 'tags' file for Vim from personal Vim-style help files.
 function generateVimHelp {
     #TODO: Make a 'constants' shell script and pull vimdir in from that
-    vim -c "helpt ${HOME}/.vim/doc/"
+    vim -c "helpt ${HOME}/.vim/doc/ | q"
 }
 
 function setAliases {
