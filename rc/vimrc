@@ -18,7 +18,7 @@ Plugin 'edkolev/promptline.vim'
 call vundle#end()
 filetype plugin indent on
 
-set laststatus=2
+set laststatus=2 "FIXME: What is this?
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -34,3 +34,9 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4 "makes backspace feel like its a real tab
 
+"========Experimental==========="
+
+"Automatically create/load view files that save code folds between uses.
+"http://vim.wikia.com/wiki/VimTip991
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview

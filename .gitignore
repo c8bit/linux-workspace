@@ -1,13 +1,22 @@
+#~~~~~Vim~~~~~
+# Vundle installs
 vim/bundle/*
 !vim/bundle
-vim/view/*
-vim/doc/adc-*
-vim/doc/tags
 
+vim/view/*
+
+# Vim swap files
 *~
 *.swp
 *.swo
 
+# Work-only files
+vim/doc/adc-*
+vim/doc/tags
+
+#~~~~~Whitelisted configs~~~~~
 config/*
+
+# X11
 !config/X11
 !config/X11/*
