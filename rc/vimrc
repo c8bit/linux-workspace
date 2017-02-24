@@ -8,12 +8,13 @@ call vundle#begin()
 "let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'powerline/fonts'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'powerline/fonts'
+"Plugin 'bling/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive' "Git branch tracking/Integrated Git commands
-Plugin 'edkolev/promptline.vim'
+"Plugin 'edkolev/promptline.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -33,6 +34,10 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4 "makes backspace feel like its a real tab
+
+"KeyBindings
+nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
 
 "========Experimental==========="
 

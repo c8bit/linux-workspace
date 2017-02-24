@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-#------------------------------------------------------------------------------
+#==============================================================================
 # ~/.bashrc
-#------------------------------------------------------------------------------
+#==============================================================================
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -16,6 +16,12 @@ readonly PROMPT_CAUTION='\e[0;31caution->\e[m '
 readonly PROMPT_PROD=''
 
 PS1=${PROMPT_DEFAULT}
+
+# Write all commands to history file immediately
+# Note: PROMPT_COMMAND contents are executed as regular bash commands just before
+#    bash displays a prompt.
+PROMPT_COMMAND='history -a'
+HISTSIZE=1000
 
 #TODO: Confirm this works properly, remain consistent with standards (once I
 #   decide what they are).
@@ -72,9 +78,16 @@ function generateVimHelp {
 }
 
 function setAliases {
+    alias igrep='grep -i'
+    alias vgrep='grep -v'
+    alias vigrep='grep -vi'
     alias ls='ls --color=auto'
     alias l='ls -lrth'
     alias la='l -a'
+    alias lv="l | grep -v '~$' | grep -v '[.]sw[op]$'"
+    alias lav="la | grep -v '~$' | grep -v '[.]sw[op]$' | grep -v '^d.*[.]$'"
+
+    alias wk='cd ~/workspace'
 
     alias venv='checkPythonVenv'
     #alias ssh='sshProfileSwitch'
