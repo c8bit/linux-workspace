@@ -20,3 +20,7 @@ config/*
 # X11
 !config/X11
 !config/X11/*
+
+# SuperCollider
+!config/SuperCollider/startup.scd
+

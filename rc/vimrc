@@ -1,11 +1,13 @@
+" Vimrc File
+
 set nocompatible
 filetype off
 
-"set the runtime path to include Vundle and initialize
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-"let Vundle manage Vundle
+" let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Valloric/YouCompleteMe'
@@ -19,12 +21,13 @@ Plugin 'tpope/vim-fugitive' "Git branch tracking/Integrated Git commands
 call vundle#end()
 filetype plugin indent on
 
+" Plugin Settings
 set laststatus=2 "FIXME: What is this?
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"Non-Vundle stuff
+" Basic config settings
 set number
 syntax on
 set background=dark
@@ -38,6 +41,10 @@ set softtabstop=4 "makes backspace feel like its a real tab
 "KeyBindings
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
+
+" Source other config files
+so ~/.scvimrc " SuperCollider
+
 
 "========Experimental==========="
 
