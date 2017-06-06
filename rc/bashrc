@@ -23,6 +23,8 @@ PS1=${PROMPT_DEFAULT}
 PROMPT_COMMAND='history -a'
 HISTSIZE=1000
 
+GREP_OPTIONS='--color=always'
+
 #TODO: Confirm this works properly, remain consistent with standards (once I
 #   decide what they are).
 readonly POWERLINE_SCRIPT="~/.shell_prompt.sh"
@@ -83,6 +85,7 @@ function setAliases {
     alias vigrep='grep -vi'
     alias ls='ls --color=auto'
     alias l='ls -lrth'
+    alias lx='ls -lXh'
     alias la='l -a'
     alias lv="l | grep -v '~$' | grep -v '[.]sw[op]$'"
     alias lav="la | grep -v '~$' | grep -v '[.]sw[op]$' | grep -v '^d.*[.]$'"

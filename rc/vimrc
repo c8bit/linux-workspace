@@ -10,13 +10,17 @@ call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'Valloric/YouCompleteMe'
+" Functionality Plugins
+"Plugin 'Valloric/YouCompleteMe'
 "Plugin 'powerline/fonts'
 "Plugin 'bling/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive' "Git branch tracking/Integrated Git commands
 "Plugin 'edkolev/promptline.vim'
+
+" Static Analysis
+Plugin 'wookiehangover/jshint.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -43,7 +47,7 @@ nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 
 " Source other config files
-so ~/.scvimrc " SuperCollider
+"so ~/.scvimrc " SuperCollider
 
 
 "========Experimental==========="
