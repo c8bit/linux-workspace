@@ -11,6 +11,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Functionality Plugins
+Plugin 'rust-lang/rust.vim'
+
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'powerline/fonts'
 "Plugin 'bling/vim-airline'
@@ -49,6 +51,8 @@ nnoremap <C-l> :tabnext<CR>
 " Source other config files
 "so ~/.scvimrc " SuperCollider
 
+" Fix for rust-lang plugin
+autocmd BufNewFile,BufRead *.rs set filetype=rust
 
 "========Experimental==========="
 
