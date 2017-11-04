@@ -21,6 +21,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive' "Git branch tracking/Integrated Git commands
 "Plugin 'edkolev/promptline.vim'
 
+" Specific Language compatibility plugins
+Plugin 'elixir-lang/vim-elixir'
+
 " Static Analysis
 Plugin 'wookiehangover/jshint.vim'
 
