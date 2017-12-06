@@ -50,6 +50,7 @@ set softtabstop=4 "makes backspace feel like its a real tab
 "KeyBindings
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
+inoremap kj <Esc>
 
 " Source other config files
 "so ~/.scvimrc " SuperCollider
