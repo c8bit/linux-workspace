@@ -11,8 +11,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Functionality Plugins
-Plugin 'rust-lang/rust.vim'
-
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'powerline/fonts'
 "Plugin 'bling/vim-airline'
@@ -23,6 +21,7 @@ Plugin 'tpope/vim-fugitive' "Git branch tracking/Integrated Git commands
 
 " Specific Language compatibility plugins
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'rust-lang/rust.vim'
 
 " Static Analysis
 Plugin 'wookiehangover/jshint.vim'
@@ -42,12 +41,21 @@ syntax on
 set background=dark
 colorscheme solarized
 
+set exrc   " Enable local .vimrc project files.
+set secure " ...with certain restrictions :)
+
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4 "makes backspace feel like its a real tab
 
-"KeyBindings
+" Visual Settings
+if exists('+colorcolumn')
+  set colorcolumn=80
+  highlight ColorColumn ctermbg=darkgray
+endif
+
+" Key Bindings
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 inoremap kj <Esc>
