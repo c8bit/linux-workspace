@@ -9,6 +9,7 @@
 
 readonly BASH_VERSION_NUMBER=$(sed -r 's/^([0-9]+\.[0-9]+\.[0-9]+).*$/\1/' <<< $BASH_VERSION)
 readonly BASHRC_SCRIPTS_DIR=~/.bashrc-scripts
+readonly BASH_LOCAL_FILE=~/.bash_local
 
 # Shell Prompt Profiles
 readonly PROMPT_DEFAULT='\e[1;35m[\u@\h \W]\e[m\e[0;33m{$?}\$\e[m '
@@ -168,6 +169,11 @@ main()
     #if [[ $(command -v screenfetch 2>&1>/dev/null) ]]; then
     #    screenfetch
     #fi
+
+    # Very last step, source local bash files
+    if [[ -f $BASH_LOCAL_FILE ]]; then
+        source $BASH_LOCAL_FILE
+    fi
 }
 
 main

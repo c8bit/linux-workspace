@@ -1,4 +1,4 @@
-#~~~~~Vim~~~~~
+#~~~~~~~~~~~~~~~~Vim~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Vundle installs
 vim/bundle/*
 !vim/bundle
@@ -10,11 +10,19 @@ vim/view/*
 *.swp
 *.swo
 
-# Work-only files
-vim/doc/adc-*
+#~~~~~~~~~~~~~~Vim Docs~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 vim/doc/tags
 
-#~~~~~Whitelisted configs~~~~~
+# Personal Notes
+vim/doc/c8bit-contents.txt
+vim/doc/c8bit
+vim/doc/c8bit/*
+
+# Work-only files
+vim/doc/adc-*
+
+#~~~~~~~~~~~~~~Configs~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Configs are whitelisted
 config/*
 
 # X11
