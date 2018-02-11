@@ -44,7 +44,8 @@ fi
 # Android paths
 # TODO: Load in ANDROID_STUDIO_PATH and ANDROID_SDK_PATH from another file in
 #   case other systems have them installed at different locations, and update
-#   the conditionals to run only if they are defined.
+#   the conditionals to run only if they are defined. Leave defaults in here
+#   just in case.
 readonly ANDROID_STUDIO_PATH="/usr/local/android-studio"
 readonly ANDROID_STUDIO_BIN="$ANDROID_STUDIO_PATH/bin"
 
@@ -70,6 +71,10 @@ readonly POWERLINE_SCRIPT="$HOME/.shell_prompt.sh"
 if [[ -f $POWERLINE_SCRIPT ]]; then
     source ${POWERLINE_SCRIPT}
 fi
+
+
+# Exports
+export EDITOR=vim
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -133,6 +138,8 @@ function setAliases
     alias lav="la | grep -v '~$' | grep -v '[.]sw[op]$' | grep -v '^d.*[.]$'"
 
     alias wk="cd $HOME/workspace"
+
+    alias telnet="echo 'Go home, you are obviously drunk'"
 
     alias venv='checkPythonVenv'
     #alias ssh='sshProfileSwitch'
