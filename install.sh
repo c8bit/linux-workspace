@@ -11,7 +11,7 @@
 #   you're never without your trusty linux workspace :)
 #------------------------------------------------------------------------------
 
-readonly __REPO_DIRECTORY__=$(readlink -m $(dirname $0))
+readonly __REPO_DIRECTORY__=$(readlink -f $(dirname $0))
 readonly __HOME_DIRECTORY__=$(echo ~)
 
 #TODO: make sure that removing quotes from these will allow them to work
@@ -116,7 +116,7 @@ main() {
         linkConfigDir
         linkScriptsDir
         linkVimDir
-        installVundle
+        #installVundle
     else
         local menuOptions=(
             'Link rc files'
