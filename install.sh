@@ -22,6 +22,18 @@ readonly CONFIG_DIR="${__REPO_DIRECTORY__}/config"
 readonly SCRIPT_DIR="${__REPO_DIRECTORY__}/bin"
 
 let EXISTING_FILES=0
+HEADLESS=false
+
+function displayHelp {
+    echo "usage: install.sh [OPTIONS]"
+    echo ""
+    echo "Pick and install workspace configurations"
+    echo ""
+    echo "Options:"
+    echo "  -h    Display usage and 'help' info"
+    echo "  -l    Run in headless mode, and activate ALL config options"
+    echo ""
+}
 
 function exitIfRoot {
     ## Exits the script if it was run by root.
@@ -96,55 +108,79 @@ function installVundle {
     vim +PluginInstall +qall
 }
 
-
 main() {
     exitIfRoot
 
-    local menuOptions=(
-        'Link rc files'
-        'Link config directory'
-        'Link scripts directory'
-        'Link Vim directory'
-        'Install Vundle'
-        'Quit'
-    )
+    if $HEADLESS; then
+        linkRcFiles
+        linkConfigDir
+        linkScriptsDir
+        linkVimDir
+        installVundle
+    else
+        local menuOptions=(
+            'Link rc files'
+            'Link config directory'
+            'Link scripts directory'
+            'Link Vim directory'
+            'Install Vundle'
+            'Quit'
+        )
 
-    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    echo "|           Config Manager             |"
-    echo "|                                      |"
-    echo "|       Please select an option:       |"
-    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        echo "|           Config Manager             |"
+        echo "|                                      |"
+        echo "|       Please select an option:       |"
+        echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
-    select opt in "${menuOptions[@]}"; do
-        case $opt in
-            'Link rc files')
-                linkRcFiles
-                ;;
-            'Link config directory')
-                linkConfigDir
-                ;;
-            'Link scripts directory')
-                linkScriptsDir
-                ;;
-            'Link Vim directory')
-                linkVimDir
-                ;;
-            'Install Vundle')
-                installVundle
-                ;;
-            'Quit')
-                break
-                ;;
-        esac
-    done
+        select opt in "${menuOptions[@]}"; do
+            case $opt in
+                'Link rc files')
+                    linkRcFiles
+                    ;;
+                'Link config directory')
+                    linkConfigDir
+                    ;;
+                'Link scripts directory')
+                    linkScriptsDir
+                    ;;
+                'Link Vim directory')
+                    linkVimDir
+                    ;;
+                'Install Vundle')
+                    installVundle
+                    ;;
+                'Quit')
+                    break
+                    ;;
+            esac
+        done
 
-    if [[ "$EXISTING_FILES" -gt "0" ]]; then
-        echo "There were some file conflicts. Those files were appended with '_OLD', and require merging."
-    fi 
+        if [[ "$EXISTING_FILES" -gt "0" ]]; then
+            echo "There were some file conflicts. Those files were appended with '_OLD', and require merging."
+        fi 
+    fi
 
     #source ~/.bashrc
     exit 0
 }
+
+while getopts ":hl" opt; do
+    case $opt in
+        h)
+            displayHelp
+            exit 0
+            ;;
+        l)
+            HEADLESS=true
+            ;;
+        \?)
+            echo "Invalid Option: -$OPTARG" >&2
+            displayHelp
+            exit 1
+            ;;
+    esac
+done
 
 main
 
