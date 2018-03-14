@@ -66,6 +66,16 @@ inoremap kj <Esc>
 " Fix for rust-lang plugin
 autocmd BufNewFile,BufRead *.rs set filetype=rust
 
+" Vim-specific settings
+if !has('nvim')
+
+endif
+
+" NVim-specific settings
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
 "========Experimental==========="
 
 "Automatically create/load view files that save code folds between uses.
