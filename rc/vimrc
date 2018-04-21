@@ -35,6 +35,8 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+let g:solarized_termtrans=1
+
 " Basic config settings
 set number
 syntax on
