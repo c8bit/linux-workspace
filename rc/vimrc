@@ -11,7 +11,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Functionality Plugins
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 "Plugin 'powerline/fonts'
 "Plugin 'bling/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
@@ -24,30 +24,45 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'rust-lang/rust.vim'
 
 " Static Analysis
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'wookiehangover/jshint.vim'
 
 call vundle#end()
 filetype plugin indent on
 
-" Plugin Settings
+" Plugin Settings ===========================================================
 set laststatus=2 "FIXME: What is this?
+" Airline settings***********************************************************
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" Basic config settings
+" Syntastic/ESLint settings**************************************************
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
+" Basic config settings======================================================
+set exrc   " Enable local .vimrc project files.
+set secure " ...with certain restrictions :)
+
+setlocal expandtab
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal softtabstop=4 "makes backspace feel like its a real tab
+
+filetype plugin indent on
 set number
 syntax on
 set background=dark
 colorscheme solarized
-
-set exrc   " Enable local .vimrc project files.
-set secure " ...with certain restrictions :)
-
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4 "makes backspace feel like its a real tab
 
 " Visual Settings
 if exists('+colorcolumn')
@@ -62,6 +77,9 @@ inoremap kj <Esc>
 
 " Source other config files
 "so ~/.scvimrc " SuperCollider
+
+" Per-filetype configs
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 " Fix for rust-lang plugin
 autocmd BufNewFile,BufRead *.rs set filetype=rust

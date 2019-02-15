@@ -42,17 +42,17 @@ fi
 
 
 # Android paths
-# TODO: Load in ANDROID_STUDIO_PATH and ANDROID_SDK_PATH from another file in
+# TODO: Load in ANDROID_STUDIO_PATH and ANDROID_HOME from another file in
 #   case other systems have them installed at different locations, and update
 #   the conditionals to run only if they are defined. Leave defaults in here
 #   just in case.
 readonly ANDROID_STUDIO_PATH="/usr/local/android-studio"
 readonly ANDROID_STUDIO_BIN="$ANDROID_STUDIO_PATH/bin"
 
-readonly ANDROID_SDK_PATH="$HOME/Android/Sdk"
-readonly ANDROID_SDK_TOOLS="$ANDROID_SDK_PATH/tools"
-readonly ANDROID_SDK_PLATFORMTOOLS="$ANDROID_SDK_PATH/platform-tools"
-readonly ANDROID_SDK_BUILDTOOLS="$ANDROID_SDK_PATH/build-tools"
+declare -rx ANDROID_HOME="$HOME/Android/Sdk"
+readonly ANDROID_SDK_TOOLS="$ANDROID_HOME/tools"
+readonly ANDROID_SDK_PLATFORMTOOLS="$ANDROID_HOME/platform-tools"
+readonly ANDROID_SDK_BUILDTOOLS="$ANDROID_HOME/build-tools"
 
 # Add Android Studio to PATH if it's installed
 if [[ -d $ANDROID_STUDIO_PATH ]]; then
@@ -60,7 +60,7 @@ if [[ -d $ANDROID_STUDIO_PATH ]]; then
 fi
 
 # Add Android Sdk tools to PATH if SDK is installed
-if [[ -d $ANDROID_SDK_PATH ]]; then
+if [[ -d $ANDROID_HOME ]]; then
     PATH=$PATH:$ANDROID_SDK_TOOLS:$ANDROID_SDK_PLATFORMTOOLS:$ANDROID_SDK_BUILDTOOLS
 fi
 
